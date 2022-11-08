@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Books genres</h1>
+
+<div id="books_genres">
+  <% @books_genres.each do |books_genre| %>
+    <%= render books_genre %>
+    <p>
+      <%= link_to "Show this books genre", books_genre %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New books genre", new_books_genre_path %>
