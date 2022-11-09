@@ -16,7 +16,7 @@ Genre.delete_all
 Author.delete_all
 Subscriber.delete_all
 
-10.times do |index| 
+10.times do |index|
   Genre.create(name: "genre#{index}")
   Author.create(name: "author#{index}")
   Subscriber.create(name: "subscriber#{index}")
@@ -31,12 +31,11 @@ end
   Book.last.authors << authors
 end
 
-20.times do |index|
+20.times do |_index|
   subscriber = Subscriber.order(Arel.sql('RANDOM()')).first
   book = Book.order(Arel.sql('RANDOM()')).first
   delete_at = DateTime.new(rand(2015..2020), rand(1..12), rand(1..28))
-  Subscription.create!( subscriber: subscriber,
-                        book: book,
-                        is_active: [true, false].sample
-  )
+  Subscription.create!(subscriber:,
+                       book:,
+                       is_active: [true, false].sample)
 end
