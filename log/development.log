@@ -13107,3 +13107,691 @@ Migrating to ChangeToSubscriptions (20221108184746)
   [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
   [1m[36mSubscription Create (0.2ms)[0m  [1m[32mINSERT INTO "subscriptions" ("book_id", "subscriber_id", "delete_at", "is_active", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["book_id", 473], ["subscriber_id", 130], ["delete_at", nil], ["is_active", true], ["created_at", "2022-11-08 18:56:59.333278"], ["updated_at", "2022-11-08 18:56:59.333278"]]
   [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(3962594025045073110)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to ChangeToSubscriprions (20221109205133)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (2.4ms)[0m  [1m[35mALTER TABLE "subscriptions" DROP COLUMN "delete_at"[0m
+  [1m[35m (0.6ms)[0m  [1m[35mALTER TABLE "subscriptions" ADD "start" timestamp(6)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mALTER TABLE "subscriptions" ADD "finish" timestamp(6)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20221109205133"]]
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(3962594025045073110)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mSubscription Delete All (1.4ms)[0m  [1m[31mDELETE FROM "subscriptions"[0m
+  [1m[36mAuthorsBook Delete All (1.9ms)[0m  [1m[31mDELETE FROM "authors_books"[0m
+  [1m[36mBooksGenre Delete All (1.6ms)[0m  [1m[31mDELETE FROM "books_genres"[0m
+  [1m[36mBook Delete All (2.0ms)[0m  [1m[31mDELETE FROM "books"[0m
+  [1m[36mGenre Delete All (1.1ms)[0m  [1m[31mDELETE FROM "genres"[0m
+  [1m[36mAuthor Delete All (1.2ms)[0m  [1m[31mDELETE FROM "authors"[0m
+  [1m[36mSubscriber Delete All (0.8ms)[0m  [1m[31mDELETE FROM "subscribers"[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGenre Create (1.0ms)[0m  [1m[32mINSERT INTO "genres" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "genre0"], ["created_at", "2022-11-09 20:53:49.002019"], ["updated_at", "2022-11-09 20:53:49.002019"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mAuthor Create (0.5ms)[0m  [1m[32mINSERT INTO "authors" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "author0"], ["created_at", "2022-11-09 20:53:49.008135"], ["updated_at", "2022-11-09 20:53:49.008135"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSubscriber Create (0.6ms)[0m  [1m[32mINSERT INTO "subscribers" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "subscriber0"], ["created_at", "2022-11-09 20:53:49.013210"], ["updated_at", "2022-11-09 20:53:49.013210"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGenre Create (0.1ms)[0m  [1m[32mINSERT INTO "genres" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "genre1"], ["created_at", "2022-11-09 20:53:49.016626"], ["updated_at", "2022-11-09 20:53:49.016626"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mAuthor Create (0.1ms)[0m  [1m[32mINSERT INTO "authors" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "author1"], ["created_at", "2022-11-09 20:53:49.019273"], ["updated_at", "2022-11-09 20:53:49.019273"]]
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSubscriber Create (0.1ms)[0m  [1m[32mINSERT INTO "subscribers" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "subscriber1"], ["created_at", "2022-11-09 20:53:49.022085"], ["updated_at", "2022-11-09 20:53:49.022085"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGenre Create (0.1ms)[0m  [1m[32mINSERT INTO "genres" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "genre2"], ["created_at", "2022-11-09 20:53:49.024852"], ["updated_at", "2022-11-09 20:53:49.024852"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mAuthor Create (0.1ms)[0m  [1m[32mINSERT INTO "authors" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "author2"], ["created_at", "2022-11-09 20:53:49.027563"], ["updated_at", "2022-11-09 20:53:49.027563"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSubscriber Create (0.2ms)[0m  [1m[32mINSERT INTO "subscribers" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "subscriber2"], ["created_at", "2022-11-09 20:53:49.030185"], ["updated_at", "2022-11-09 20:53:49.030185"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGenre Create (0.1ms)[0m  [1m[32mINSERT INTO "genres" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "genre3"], ["created_at", "2022-11-09 20:53:49.032846"], ["updated_at", "2022-11-09 20:53:49.032846"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mAuthor Create (0.2ms)[0m  [1m[32mINSERT INTO "authors" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "author3"], ["created_at", "2022-11-09 20:53:49.035615"], ["updated_at", "2022-11-09 20:53:49.035615"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSubscriber Create (0.1ms)[0m  [1m[32mINSERT INTO "subscribers" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "subscriber3"], ["created_at", "2022-11-09 20:53:49.038403"], ["updated_at", "2022-11-09 20:53:49.038403"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGenre Create (0.2ms)[0m  [1m[32mINSERT INTO "genres" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "genre4"], ["created_at", "2022-11-09 20:53:49.041162"], ["updated_at", "2022-11-09 20:53:49.041162"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mAuthor Create (0.1ms)[0m  [1m[32mINSERT INTO "authors" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "author4"], ["created_at", "2022-11-09 20:53:49.043972"], ["updated_at", "2022-11-09 20:53:49.043972"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSubscriber Create (0.1ms)[0m  [1m[32mINSERT INTO "subscribers" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "subscriber4"], ["created_at", "2022-11-09 20:53:49.046710"], ["updated_at", "2022-11-09 20:53:49.046710"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGenre Create (0.2ms)[0m  [1m[32mINSERT INTO "genres" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "genre5"], ["created_at", "2022-11-09 20:53:49.049252"], ["updated_at", "2022-11-09 20:53:49.049252"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mAuthor Create (0.1ms)[0m  [1m[32mINSERT INTO "authors" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "author5"], ["created_at", "2022-11-09 20:53:49.051968"], ["updated_at", "2022-11-09 20:53:49.051968"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSubscriber Create (0.1ms)[0m  [1m[32mINSERT INTO "subscribers" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "subscriber5"], ["created_at", "2022-11-09 20:53:49.054525"], ["updated_at", "2022-11-09 20:53:49.054525"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGenre Create (0.1ms)[0m  [1m[32mINSERT INTO "genres" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "genre6"], ["created_at", "2022-11-09 20:53:49.056990"], ["updated_at", "2022-11-09 20:53:49.056990"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mAuthor Create (0.1ms)[0m  [1m[32mINSERT INTO "authors" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "author6"], ["created_at", "2022-11-09 20:53:49.059391"], ["updated_at", "2022-11-09 20:53:49.059391"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSubscriber Create (0.1ms)[0m  [1m[32mINSERT INTO "subscribers" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "subscriber6"], ["created_at", "2022-11-09 20:53:49.061790"], ["updated_at", "2022-11-09 20:53:49.061790"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGenre Create (0.1ms)[0m  [1m[32mINSERT INTO "genres" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "genre7"], ["created_at", "2022-11-09 20:53:49.064213"], ["updated_at", "2022-11-09 20:53:49.064213"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mAuthor Create (0.1ms)[0m  [1m[32mINSERT INTO "authors" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "author7"], ["created_at", "2022-11-09 20:53:49.066650"], ["updated_at", "2022-11-09 20:53:49.066650"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSubscriber Create (0.1ms)[0m  [1m[32mINSERT INTO "subscribers" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "subscriber7"], ["created_at", "2022-11-09 20:53:49.069070"], ["updated_at", "2022-11-09 20:53:49.069070"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGenre Create (0.1ms)[0m  [1m[32mINSERT INTO "genres" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "genre8"], ["created_at", "2022-11-09 20:53:49.071835"], ["updated_at", "2022-11-09 20:53:49.071835"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mAuthor Create (0.1ms)[0m  [1m[32mINSERT INTO "authors" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "author8"], ["created_at", "2022-11-09 20:53:49.074386"], ["updated_at", "2022-11-09 20:53:49.074386"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSubscriber Create (0.1ms)[0m  [1m[32mINSERT INTO "subscribers" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "subscriber8"], ["created_at", "2022-11-09 20:53:49.077203"], ["updated_at", "2022-11-09 20:53:49.077203"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGenre Create (0.3ms)[0m  [1m[32mINSERT INTO "genres" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "genre9"], ["created_at", "2022-11-09 20:53:49.081379"], ["updated_at", "2022-11-09 20:53:49.081379"]]
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mAuthor Create (0.4ms)[0m  [1m[32mINSERT INTO "authors" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "author9"], ["created_at", "2022-11-09 20:53:49.085863"], ["updated_at", "2022-11-09 20:53:49.085863"]]
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSubscriber Create (0.2ms)[0m  [1m[32mINSERT INTO "subscribers" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "subscriber9"], ["created_at", "2022-11-09 20:53:49.089509"], ["updated_at", "2022-11-09 20:53:49.089509"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mBook Create (0.5ms)[0m  [1m[32mINSERT INTO "books" ("name", "year", "quantity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "book0"], ["year", 2012], ["quantity", 36], ["created_at", "2022-11-09 20:53:49.097504"], ["updated_at", "2022-11-09 20:53:49.097504"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mGenre Load (0.3ms)[0m  [1m[34mSELECT "genres".* FROM "genres" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 2]]
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books" ORDER BY "books"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mBooksGenre Create (0.7ms)[0m  [1m[32mINSERT INTO "books_genres" ("genre_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["genre_id", 824], ["book_id", 571], ["created_at", "2022-11-09 20:53:49.121166"], ["updated_at", "2022-11-09 20:53:49.121166"]]
+  [1m[36mBooksGenre Create (0.2ms)[0m  [1m[32mINSERT INTO "books_genres" ("genre_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["genre_id", 825], ["book_id", 571], ["created_at", "2022-11-09 20:53:49.123537"], ["updated_at", "2022-11-09 20:53:49.123537"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mAuthor Load (0.2ms)[0m  [1m[34mSELECT "authors".* FROM "authors" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 2]]
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" ORDER BY "books"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mAuthorsBook Create (0.9ms)[0m  [1m[32mINSERT INTO "authors_books" ("author_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["author_id", 283], ["book_id", 571], ["created_at", "2022-11-09 20:53:49.133557"], ["updated_at", "2022-11-09 20:53:49.133557"]]
+  [1m[36mAuthorsBook Create (0.2ms)[0m  [1m[32mINSERT INTO "authors_books" ("author_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["author_id", 276], ["book_id", 571], ["created_at", "2022-11-09 20:53:49.135937"], ["updated_at", "2022-11-09 20:53:49.135937"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mBook Create (0.1ms)[0m  [1m[32mINSERT INTO "books" ("name", "year", "quantity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "book1"], ["year", 1857], ["quantity", 71], ["created_at", "2022-11-09 20:53:49.138154"], ["updated_at", "2022-11-09 20:53:49.138154"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mGenre Load (0.1ms)[0m  [1m[34mSELECT "genres".* FROM "genres" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 2]]
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" ORDER BY "books"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mBooksGenre Create (0.2ms)[0m  [1m[32mINSERT INTO "books_genres" ("genre_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["genre_id", 818], ["book_id", 572], ["created_at", "2022-11-09 20:53:49.143336"], ["updated_at", "2022-11-09 20:53:49.143336"]]
+  [1m[36mBooksGenre Create (0.2ms)[0m  [1m[32mINSERT INTO "books_genres" ("genre_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["genre_id", 826], ["book_id", 572], ["created_at", "2022-11-09 20:53:49.145618"], ["updated_at", "2022-11-09 20:53:49.145618"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mAuthor Load (0.1ms)[0m  [1m[34mSELECT "authors".* FROM "authors" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 2]]
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" ORDER BY "books"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mAuthorsBook Create (0.2ms)[0m  [1m[32mINSERT INTO "authors_books" ("author_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["author_id", 280], ["book_id", 572], ["created_at", "2022-11-09 20:53:49.149831"], ["updated_at", "2022-11-09 20:53:49.149831"]]
+  [1m[36mAuthorsBook Create (0.2ms)[0m  [1m[32mINSERT INTO "authors_books" ("author_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["author_id", 283], ["book_id", 572], ["created_at", "2022-11-09 20:53:49.152223"], ["updated_at", "2022-11-09 20:53:49.152223"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mBook Create (0.1ms)[0m  [1m[32mINSERT INTO "books" ("name", "year", "quantity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "book2"], ["year", 1904], ["quantity", 13], ["created_at", "2022-11-09 20:53:49.154353"], ["updated_at", "2022-11-09 20:53:49.154353"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mGenre Load (0.1ms)[0m  [1m[34mSELECT "genres".* FROM "genres" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 2]]
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" ORDER BY "books"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mBooksGenre Create (0.2ms)[0m  [1m[32mINSERT INTO "books_genres" ("genre_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["genre_id", 826], ["book_id", 573], ["created_at", "2022-11-09 20:53:49.159504"], ["updated_at", "2022-11-09 20:53:49.159504"]]
+  [1m[36mBooksGenre Create (0.2ms)[0m  [1m[32mINSERT INTO "books_genres" ("genre_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["genre_id", 825], ["book_id", 573], ["created_at", "2022-11-09 20:53:49.161879"], ["updated_at", "2022-11-09 20:53:49.161879"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mAuthor Load (0.1ms)[0m  [1m[34mSELECT "authors".* FROM "authors" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 2]]
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" ORDER BY "books"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mAuthorsBook Create (0.2ms)[0m  [1m[32mINSERT INTO "authors_books" ("author_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["author_id", 285], ["book_id", 573], ["created_at", "2022-11-09 20:53:49.166196"], ["updated_at", "2022-11-09 20:53:49.166196"]]
+  [1m[36mAuthorsBook Create (0.2ms)[0m  [1m[32mINSERT INTO "authors_books" ("author_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["author_id", 281], ["book_id", 573], ["created_at", "2022-11-09 20:53:49.168426"], ["updated_at", "2022-11-09 20:53:49.168426"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mBook Create (0.1ms)[0m  [1m[32mINSERT INTO "books" ("name", "year", "quantity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "book3"], ["year", 1944], ["quantity", 41], ["created_at", "2022-11-09 20:53:49.170509"], ["updated_at", "2022-11-09 20:53:49.170509"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mGenre Load (0.1ms)[0m  [1m[34mSELECT "genres".* FROM "genres" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 2]]
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" ORDER BY "books"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mBooksGenre Create (0.2ms)[0m  [1m[32mINSERT INTO "books_genres" ("genre_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["genre_id", 823], ["book_id", 574], ["created_at", "2022-11-09 20:53:49.175520"], ["updated_at", "2022-11-09 20:53:49.175520"]]
+  [1m[36mBooksGenre Create (0.1ms)[0m  [1m[32mINSERT INTO "books_genres" ("genre_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["genre_id", 821], ["book_id", 574], ["created_at", "2022-11-09 20:53:49.177652"], ["updated_at", "2022-11-09 20:53:49.177652"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mAuthor Load (0.1ms)[0m  [1m[34mSELECT "authors".* FROM "authors" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 2]]
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" ORDER BY "books"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mAuthorsBook Create (0.2ms)[0m  [1m[32mINSERT INTO "authors_books" ("author_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["author_id", 278], ["book_id", 574], ["created_at", "2022-11-09 20:53:49.182038"], ["updated_at", "2022-11-09 20:53:49.182038"]]
+  [1m[36mAuthorsBook Create (0.2ms)[0m  [1m[32mINSERT INTO "authors_books" ("author_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["author_id", 284], ["book_id", 574], ["created_at", "2022-11-09 20:53:49.184583"], ["updated_at", "2022-11-09 20:53:49.184583"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mBook Create (0.1ms)[0m  [1m[32mINSERT INTO "books" ("name", "year", "quantity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "book4"], ["year", 1913], ["quantity", 43], ["created_at", "2022-11-09 20:53:49.186603"], ["updated_at", "2022-11-09 20:53:49.186603"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mGenre Load (0.1ms)[0m  [1m[34mSELECT "genres".* FROM "genres" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 2]]
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" ORDER BY "books"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mBooksGenre Create (0.1ms)[0m  [1m[32mINSERT INTO "books_genres" ("genre_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["genre_id", 824], ["book_id", 575], ["created_at", "2022-11-09 20:53:49.191461"], ["updated_at", "2022-11-09 20:53:49.191461"]]
+  [1m[36mBooksGenre Create (0.2ms)[0m  [1m[32mINSERT INTO "books_genres" ("genre_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["genre_id", 825], ["book_id", 575], ["created_at", "2022-11-09 20:53:49.193750"], ["updated_at", "2022-11-09 20:53:49.193750"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mAuthor Load (0.1ms)[0m  [1m[34mSELECT "authors".* FROM "authors" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 2]]
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" ORDER BY "books"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mAuthorsBook Create (0.2ms)[0m  [1m[32mINSERT INTO "authors_books" ("author_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["author_id", 285], ["book_id", 575], ["created_at", "2022-11-09 20:53:49.198061"], ["updated_at", "2022-11-09 20:53:49.198061"]]
+  [1m[36mAuthorsBook Create (0.1ms)[0m  [1m[32mINSERT INTO "authors_books" ("author_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["author_id", 284], ["book_id", 575], ["created_at", "2022-11-09 20:53:49.200278"], ["updated_at", "2022-11-09 20:53:49.200278"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mBook Create (0.1ms)[0m  [1m[32mINSERT INTO "books" ("name", "year", "quantity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "book5"], ["year", 2010], ["quantity", 46], ["created_at", "2022-11-09 20:53:49.202341"], ["updated_at", "2022-11-09 20:53:49.202341"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mGenre Load (0.2ms)[0m  [1m[34mSELECT "genres".* FROM "genres" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 2]]
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" ORDER BY "books"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mBooksGenre Create (0.2ms)[0m  [1m[32mINSERT INTO "books_genres" ("genre_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["genre_id", 825], ["book_id", 576], ["created_at", "2022-11-09 20:53:49.207406"], ["updated_at", "2022-11-09 20:53:49.207406"]]
+  [1m[36mBooksGenre Create (0.1ms)[0m  [1m[32mINSERT INTO "books_genres" ("genre_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["genre_id", 820], ["book_id", 576], ["created_at", "2022-11-09 20:53:49.209714"], ["updated_at", "2022-11-09 20:53:49.209714"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mAuthor Load (0.1ms)[0m  [1m[34mSELECT "authors".* FROM "authors" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 2]]
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" ORDER BY "books"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mAuthorsBook Create (0.2ms)[0m  [1m[32mINSERT INTO "authors_books" ("author_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["author_id", 278], ["book_id", 576], ["created_at", "2022-11-09 20:53:49.214152"], ["updated_at", "2022-11-09 20:53:49.214152"]]
+  [1m[36mAuthorsBook Create (0.1ms)[0m  [1m[32mINSERT INTO "authors_books" ("author_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["author_id", 279], ["book_id", 576], ["created_at", "2022-11-09 20:53:49.216423"], ["updated_at", "2022-11-09 20:53:49.216423"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mBook Create (0.2ms)[0m  [1m[32mINSERT INTO "books" ("name", "year", "quantity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "book6"], ["year", 1768], ["quantity", 90], ["created_at", "2022-11-09 20:53:49.218450"], ["updated_at", "2022-11-09 20:53:49.218450"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mGenre Load (0.1ms)[0m  [1m[34mSELECT "genres".* FROM "genres" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 2]]
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" ORDER BY "books"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mBooksGenre Create (0.2ms)[0m  [1m[32mINSERT INTO "books_genres" ("genre_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["genre_id", 826], ["book_id", 577], ["created_at", "2022-11-09 20:53:49.223588"], ["updated_at", "2022-11-09 20:53:49.223588"]]
+  [1m[36mBooksGenre Create (0.1ms)[0m  [1m[32mINSERT INTO "books_genres" ("genre_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["genre_id", 823], ["book_id", 577], ["created_at", "2022-11-09 20:53:49.225770"], ["updated_at", "2022-11-09 20:53:49.225770"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mAuthor Load (0.1ms)[0m  [1m[34mSELECT "authors".* FROM "authors" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 2]]
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" ORDER BY "books"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mAuthorsBook Create (0.2ms)[0m  [1m[32mINSERT INTO "authors_books" ("author_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["author_id", 276], ["book_id", 577], ["created_at", "2022-11-09 20:53:49.229859"], ["updated_at", "2022-11-09 20:53:49.229859"]]
+  [1m[36mAuthorsBook Create (0.2ms)[0m  [1m[32mINSERT INTO "authors_books" ("author_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["author_id", 281], ["book_id", 577], ["created_at", "2022-11-09 20:53:49.234926"], ["updated_at", "2022-11-09 20:53:49.234926"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mBook Create (0.2ms)[0m  [1m[32mINSERT INTO "books" ("name", "year", "quantity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "book7"], ["year", 1845], ["quantity", 10], ["created_at", "2022-11-09 20:53:49.240197"], ["updated_at", "2022-11-09 20:53:49.240197"]]
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mGenre Load (0.3ms)[0m  [1m[34mSELECT "genres".* FROM "genres" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 2]]
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" ORDER BY "books"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mBooksGenre Create (0.4ms)[0m  [1m[32mINSERT INTO "books_genres" ("genre_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["genre_id", 822], ["book_id", 578], ["created_at", "2022-11-09 20:53:49.256068"], ["updated_at", "2022-11-09 20:53:49.256068"]]
+  [1m[36mBooksGenre Create (0.3ms)[0m  [1m[32mINSERT INTO "books_genres" ("genre_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["genre_id", 820], ["book_id", 578], ["created_at", "2022-11-09 20:53:49.264607"], ["updated_at", "2022-11-09 20:53:49.264607"]]
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mAuthor Load (0.3ms)[0m  [1m[34mSELECT "authors".* FROM "authors" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 2]]
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" ORDER BY "books"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mAuthorsBook Create (1.7ms)[0m  [1m[32mINSERT INTO "authors_books" ("author_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["author_id", 277], ["book_id", 578], ["created_at", "2022-11-09 20:53:49.280295"], ["updated_at", "2022-11-09 20:53:49.280295"]]
+  [1m[36mAuthorsBook Create (0.5ms)[0m  [1m[32mINSERT INTO "authors_books" ("author_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["author_id", 285], ["book_id", 578], ["created_at", "2022-11-09 20:53:49.297288"], ["updated_at", "2022-11-09 20:53:49.297288"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mBook Create (0.2ms)[0m  [1m[32mINSERT INTO "books" ("name", "year", "quantity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "book8"], ["year", 1782], ["quantity", 46], ["created_at", "2022-11-09 20:53:49.300213"], ["updated_at", "2022-11-09 20:53:49.300213"]]
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mGenre Load (0.3ms)[0m  [1m[34mSELECT "genres".* FROM "genres" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 2]]
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" ORDER BY "books"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mBooksGenre Create (0.3ms)[0m  [1m[32mINSERT INTO "books_genres" ("genre_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["genre_id", 819], ["book_id", 579], ["created_at", "2022-11-09 20:53:49.306270"], ["updated_at", "2022-11-09 20:53:49.306270"]]
+  [1m[36mBooksGenre Create (0.3ms)[0m  [1m[32mINSERT INTO "books_genres" ("genre_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["genre_id", 818], ["book_id", 579], ["created_at", "2022-11-09 20:53:49.308907"], ["updated_at", "2022-11-09 20:53:49.308907"]]
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mAuthor Load (0.3ms)[0m  [1m[34mSELECT "authors".* FROM "authors" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 2]]
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" ORDER BY "books"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mAuthorsBook Create (0.2ms)[0m  [1m[32mINSERT INTO "authors_books" ("author_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["author_id", 283], ["book_id", 579], ["created_at", "2022-11-09 20:53:49.316176"], ["updated_at", "2022-11-09 20:53:49.316176"]]
+  [1m[36mAuthorsBook Create (0.1ms)[0m  [1m[32mINSERT INTO "authors_books" ("author_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["author_id", 280], ["book_id", 579], ["created_at", "2022-11-09 20:53:49.318668"], ["updated_at", "2022-11-09 20:53:49.318668"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mBook Create (0.1ms)[0m  [1m[32mINSERT INTO "books" ("name", "year", "quantity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "book9"], ["year", 1837], ["quantity", 79], ["created_at", "2022-11-09 20:53:49.320898"], ["updated_at", "2022-11-09 20:53:49.320898"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mGenre Load (0.1ms)[0m  [1m[34mSELECT "genres".* FROM "genres" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 2]]
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" ORDER BY "books"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mBooksGenre Create (0.2ms)[0m  [1m[32mINSERT INTO "books_genres" ("genre_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["genre_id", 822], ["book_id", 580], ["created_at", "2022-11-09 20:53:49.325984"], ["updated_at", "2022-11-09 20:53:49.325984"]]
+  [1m[36mBooksGenre Create (0.1ms)[0m  [1m[32mINSERT INTO "books_genres" ("genre_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["genre_id", 825], ["book_id", 580], ["created_at", "2022-11-09 20:53:49.328284"], ["updated_at", "2022-11-09 20:53:49.328284"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mAuthor Load (0.1ms)[0m  [1m[34mSELECT "authors".* FROM "authors" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 2]]
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" ORDER BY "books"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mAuthorsBook Create (0.2ms)[0m  [1m[32mINSERT INTO "authors_books" ("author_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["author_id", 278], ["book_id", 580], ["created_at", "2022-11-09 20:53:49.332762"], ["updated_at", "2022-11-09 20:53:49.332762"]]
+  [1m[36mAuthorsBook Create (0.1ms)[0m  [1m[32mINSERT INTO "authors_books" ("author_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["author_id", 284], ["book_id", 580], ["created_at", "2022-11-09 20:53:49.335150"], ["updated_at", "2022-11-09 20:53:49.335150"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mBook Create (0.2ms)[0m  [1m[32mINSERT INTO "books" ("name", "year", "quantity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "book10"], ["year", 1765], ["quantity", 63], ["created_at", "2022-11-09 20:53:49.337195"], ["updated_at", "2022-11-09 20:53:49.337195"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mGenre Load (0.2ms)[0m  [1m[34mSELECT "genres".* FROM "genres" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 2]]
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" ORDER BY "books"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mBooksGenre Create (0.3ms)[0m  [1m[32mINSERT INTO "books_genres" ("genre_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["genre_id", 819], ["book_id", 581], ["created_at", "2022-11-09 20:53:49.342785"], ["updated_at", "2022-11-09 20:53:49.342785"]]
+  [1m[36mBooksGenre Create (0.2ms)[0m  [1m[32mINSERT INTO "books_genres" ("genre_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["genre_id", 826], ["book_id", 581], ["created_at", "2022-11-09 20:53:49.345205"], ["updated_at", "2022-11-09 20:53:49.345205"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mAuthor Load (0.2ms)[0m  [1m[34mSELECT "authors".* FROM "authors" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 2]]
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" ORDER BY "books"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mAuthorsBook Create (0.3ms)[0m  [1m[32mINSERT INTO "authors_books" ("author_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["author_id", 282], ["book_id", 581], ["created_at", "2022-11-09 20:53:49.349658"], ["updated_at", "2022-11-09 20:53:49.349658"]]
+  [1m[36mAuthorsBook Create (0.3ms)[0m  [1m[32mINSERT INTO "authors_books" ("author_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["author_id", 281], ["book_id", 581], ["created_at", "2022-11-09 20:53:49.351967"], ["updated_at", "2022-11-09 20:53:49.351967"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mBook Create (0.2ms)[0m  [1m[32mINSERT INTO "books" ("name", "year", "quantity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "book11"], ["year", 1882], ["quantity", 53], ["created_at", "2022-11-09 20:53:49.354308"], ["updated_at", "2022-11-09 20:53:49.354308"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mGenre Load (0.2ms)[0m  [1m[34mSELECT "genres".* FROM "genres" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 2]]
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" ORDER BY "books"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mBooksGenre Create (0.3ms)[0m  [1m[32mINSERT INTO "books_genres" ("genre_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["genre_id", 826], ["book_id", 582], ["created_at", "2022-11-09 20:53:49.359456"], ["updated_at", "2022-11-09 20:53:49.359456"]]
+  [1m[36mBooksGenre Create (0.2ms)[0m  [1m[32mINSERT INTO "books_genres" ("genre_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["genre_id", 827], ["book_id", 582], ["created_at", "2022-11-09 20:53:49.361761"], ["updated_at", "2022-11-09 20:53:49.361761"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mAuthor Load (0.2ms)[0m  [1m[34mSELECT "authors".* FROM "authors" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 2]]
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" ORDER BY "books"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mAuthorsBook Create (0.3ms)[0m  [1m[32mINSERT INTO "authors_books" ("author_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["author_id", 281], ["book_id", 582], ["created_at", "2022-11-09 20:53:49.366332"], ["updated_at", "2022-11-09 20:53:49.366332"]]
+  [1m[36mAuthorsBook Create (0.2ms)[0m  [1m[32mINSERT INTO "authors_books" ("author_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["author_id", 279], ["book_id", 582], ["created_at", "2022-11-09 20:53:49.368626"], ["updated_at", "2022-11-09 20:53:49.368626"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mBook Create (0.2ms)[0m  [1m[32mINSERT INTO "books" ("name", "year", "quantity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "book12"], ["year", 1975], ["quantity", 30], ["created_at", "2022-11-09 20:53:49.370847"], ["updated_at", "2022-11-09 20:53:49.370847"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mGenre Load (0.2ms)[0m  [1m[34mSELECT "genres".* FROM "genres" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 2]]
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" ORDER BY "books"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mBooksGenre Create (0.3ms)[0m  [1m[32mINSERT INTO "books_genres" ("genre_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["genre_id", 822], ["book_id", 583], ["created_at", "2022-11-09 20:53:49.376046"], ["updated_at", "2022-11-09 20:53:49.376046"]]
+  [1m[36mBooksGenre Create (0.2ms)[0m  [1m[32mINSERT INTO "books_genres" ("genre_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["genre_id", 824], ["book_id", 583], ["created_at", "2022-11-09 20:53:49.378235"], ["updated_at", "2022-11-09 20:53:49.378235"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mAuthor Load (0.2ms)[0m  [1m[34mSELECT "authors".* FROM "authors" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 2]]
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" ORDER BY "books"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mAuthorsBook Create (0.3ms)[0m  [1m[32mINSERT INTO "authors_books" ("author_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["author_id", 285], ["book_id", 583], ["created_at", "2022-11-09 20:53:49.382835"], ["updated_at", "2022-11-09 20:53:49.382835"]]
+  [1m[36mAuthorsBook Create (0.2ms)[0m  [1m[32mINSERT INTO "authors_books" ("author_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["author_id", 283], ["book_id", 583], ["created_at", "2022-11-09 20:53:49.385195"], ["updated_at", "2022-11-09 20:53:49.385195"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mBook Create (0.2ms)[0m  [1m[32mINSERT INTO "books" ("name", "year", "quantity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "book13"], ["year", 1981], ["quantity", 54], ["created_at", "2022-11-09 20:53:49.387295"], ["updated_at", "2022-11-09 20:53:49.387295"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mGenre Load (0.2ms)[0m  [1m[34mSELECT "genres".* FROM "genres" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 2]]
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" ORDER BY "books"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mBooksGenre Create (0.3ms)[0m  [1m[32mINSERT INTO "books_genres" ("genre_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["genre_id", 821], ["book_id", 584], ["created_at", "2022-11-09 20:53:49.392541"], ["updated_at", "2022-11-09 20:53:49.392541"]]
+  [1m[36mBooksGenre Create (0.2ms)[0m  [1m[32mINSERT INTO "books_genres" ("genre_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["genre_id", 826], ["book_id", 584], ["created_at", "2022-11-09 20:53:49.394942"], ["updated_at", "2022-11-09 20:53:49.394942"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mAuthor Load (0.2ms)[0m  [1m[34mSELECT "authors".* FROM "authors" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 2]]
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" ORDER BY "books"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mAuthorsBook Create (0.3ms)[0m  [1m[32mINSERT INTO "authors_books" ("author_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["author_id", 276], ["book_id", 584], ["created_at", "2022-11-09 20:53:49.399427"], ["updated_at", "2022-11-09 20:53:49.399427"]]
+  [1m[36mAuthorsBook Create (0.3ms)[0m  [1m[32mINSERT INTO "authors_books" ("author_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["author_id", 277], ["book_id", 584], ["created_at", "2022-11-09 20:53:49.401730"], ["updated_at", "2022-11-09 20:53:49.401730"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mBook Create (0.2ms)[0m  [1m[32mINSERT INTO "books" ("name", "year", "quantity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "book14"], ["year", 1900], ["quantity", 97], ["created_at", "2022-11-09 20:53:49.404063"], ["updated_at", "2022-11-09 20:53:49.404063"]]
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mGenre Load (0.2ms)[0m  [1m[34mSELECT "genres".* FROM "genres" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 2]]
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" ORDER BY "books"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mBooksGenre Create (0.3ms)[0m  [1m[32mINSERT INTO "books_genres" ("genre_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["genre_id", 826], ["book_id", 585], ["created_at", "2022-11-09 20:53:49.409728"], ["updated_at", "2022-11-09 20:53:49.409728"]]
+  [1m[36mBooksGenre Create (0.3ms)[0m  [1m[32mINSERT INTO "books_genres" ("genre_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["genre_id", 818], ["book_id", 585], ["created_at", "2022-11-09 20:53:49.411967"], ["updated_at", "2022-11-09 20:53:49.411967"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mAuthor Load (0.2ms)[0m  [1m[34mSELECT "authors".* FROM "authors" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 2]]
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" ORDER BY "books"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mAuthorsBook Create (0.3ms)[0m  [1m[32mINSERT INTO "authors_books" ("author_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["author_id", 277], ["book_id", 585], ["created_at", "2022-11-09 20:53:49.416660"], ["updated_at", "2022-11-09 20:53:49.416660"]]
+  [1m[36mAuthorsBook Create (0.3ms)[0m  [1m[32mINSERT INTO "authors_books" ("author_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["author_id", 281], ["book_id", 585], ["created_at", "2022-11-09 20:53:49.419013"], ["updated_at", "2022-11-09 20:53:49.419013"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mBook Create (0.2ms)[0m  [1m[32mINSERT INTO "books" ("name", "year", "quantity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "book15"], ["year", 1867], ["quantity", 84], ["created_at", "2022-11-09 20:53:49.421180"], ["updated_at", "2022-11-09 20:53:49.421180"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mGenre Load (0.2ms)[0m  [1m[34mSELECT "genres".* FROM "genres" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 2]]
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" ORDER BY "books"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mBooksGenre Create (0.3ms)[0m  [1m[32mINSERT INTO "books_genres" ("genre_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["genre_id", 824], ["book_id", 586], ["created_at", "2022-11-09 20:53:49.426448"], ["updated_at", "2022-11-09 20:53:49.426448"]]
+  [1m[36mBooksGenre Create (0.2ms)[0m  [1m[32mINSERT INTO "books_genres" ("genre_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["genre_id", 827], ["book_id", 586], ["created_at", "2022-11-09 20:53:49.428824"], ["updated_at", "2022-11-09 20:53:49.428824"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mAuthor Load (0.2ms)[0m  [1m[34mSELECT "authors".* FROM "authors" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 2]]
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" ORDER BY "books"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mAuthorsBook Create (0.3ms)[0m  [1m[32mINSERT INTO "authors_books" ("author_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["author_id", 284], ["book_id", 586], ["created_at", "2022-11-09 20:53:49.433433"], ["updated_at", "2022-11-09 20:53:49.433433"]]
+  [1m[36mAuthorsBook Create (0.2ms)[0m  [1m[32mINSERT INTO "authors_books" ("author_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["author_id", 281], ["book_id", 586], ["created_at", "2022-11-09 20:53:49.435904"], ["updated_at", "2022-11-09 20:53:49.435904"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mBook Create (0.2ms)[0m  [1m[32mINSERT INTO "books" ("name", "year", "quantity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "book16"], ["year", 1823], ["quantity", 90], ["created_at", "2022-11-09 20:53:49.438133"], ["updated_at", "2022-11-09 20:53:49.438133"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mGenre Load (0.2ms)[0m  [1m[34mSELECT "genres".* FROM "genres" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 2]]
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" ORDER BY "books"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mBooksGenre Create (0.3ms)[0m  [1m[32mINSERT INTO "books_genres" ("genre_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["genre_id", 826], ["book_id", 587], ["created_at", "2022-11-09 20:53:49.444199"], ["updated_at", "2022-11-09 20:53:49.444199"]]
+  [1m[36mBooksGenre Create (0.3ms)[0m  [1m[32mINSERT INTO "books_genres" ("genre_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["genre_id", 822], ["book_id", 587], ["created_at", "2022-11-09 20:53:49.446754"], ["updated_at", "2022-11-09 20:53:49.446754"]]
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mAuthor Load (0.2ms)[0m  [1m[34mSELECT "authors".* FROM "authors" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 2]]
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books" ORDER BY "books"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mAuthorsBook Create (0.3ms)[0m  [1m[32mINSERT INTO "authors_books" ("author_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["author_id", 283], ["book_id", 587], ["created_at", "2022-11-09 20:53:49.452114"], ["updated_at", "2022-11-09 20:53:49.452114"]]
+  [1m[36mAuthorsBook Create (0.3ms)[0m  [1m[32mINSERT INTO "authors_books" ("author_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["author_id", 281], ["book_id", 587], ["created_at", "2022-11-09 20:53:49.454726"], ["updated_at", "2022-11-09 20:53:49.454726"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mBook Create (0.2ms)[0m  [1m[32mINSERT INTO "books" ("name", "year", "quantity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "book17"], ["year", 1859], ["quantity", 29], ["created_at", "2022-11-09 20:53:49.457030"], ["updated_at", "2022-11-09 20:53:49.457030"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mGenre Load (0.2ms)[0m  [1m[34mSELECT "genres".* FROM "genres" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 2]]
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" ORDER BY "books"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mBooksGenre Create (0.3ms)[0m  [1m[32mINSERT INTO "books_genres" ("genre_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["genre_id", 824], ["book_id", 588], ["created_at", "2022-11-09 20:53:49.462271"], ["updated_at", "2022-11-09 20:53:49.462271"]]
+  [1m[36mBooksGenre Create (0.2ms)[0m  [1m[32mINSERT INTO "books_genres" ("genre_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["genre_id", 827], ["book_id", 588], ["created_at", "2022-11-09 20:53:49.464736"], ["updated_at", "2022-11-09 20:53:49.464736"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mAuthor Load (0.2ms)[0m  [1m[34mSELECT "authors".* FROM "authors" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 2]]
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" ORDER BY "books"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mAuthorsBook Create (0.3ms)[0m  [1m[32mINSERT INTO "authors_books" ("author_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["author_id", 279], ["book_id", 588], ["created_at", "2022-11-09 20:53:49.469454"], ["updated_at", "2022-11-09 20:53:49.469454"]]
+  [1m[36mAuthorsBook Create (0.4ms)[0m  [1m[32mINSERT INTO "authors_books" ("author_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["author_id", 285], ["book_id", 588], ["created_at", "2022-11-09 20:53:49.471873"], ["updated_at", "2022-11-09 20:53:49.471873"]]
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mBook Create (0.2ms)[0m  [1m[32mINSERT INTO "books" ("name", "year", "quantity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "book18"], ["year", 1726], ["quantity", 57], ["created_at", "2022-11-09 20:53:49.474186"], ["updated_at", "2022-11-09 20:53:49.474186"]]
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mGenre Load (0.2ms)[0m  [1m[34mSELECT "genres".* FROM "genres" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 2]]
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" ORDER BY "books"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mBooksGenre Create (0.3ms)[0m  [1m[32mINSERT INTO "books_genres" ("genre_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["genre_id", 818], ["book_id", 589], ["created_at", "2022-11-09 20:53:49.479731"], ["updated_at", "2022-11-09 20:53:49.479731"]]
+  [1m[36mBooksGenre Create (0.3ms)[0m  [1m[32mINSERT INTO "books_genres" ("genre_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["genre_id", 827], ["book_id", 589], ["created_at", "2022-11-09 20:53:49.482115"], ["updated_at", "2022-11-09 20:53:49.482115"]]
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mAuthor Load (0.2ms)[0m  [1m[34mSELECT "authors".* FROM "authors" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 2]]
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" ORDER BY "books"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mAuthorsBook Create (0.2ms)[0m  [1m[32mINSERT INTO "authors_books" ("author_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["author_id", 280], ["book_id", 589], ["created_at", "2022-11-09 20:53:49.487956"], ["updated_at", "2022-11-09 20:53:49.487956"]]
+  [1m[36mAuthorsBook Create (0.2ms)[0m  [1m[32mINSERT INTO "authors_books" ("author_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["author_id", 278], ["book_id", 589], ["created_at", "2022-11-09 20:53:49.490297"], ["updated_at", "2022-11-09 20:53:49.490297"]]
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mBook Create (0.1ms)[0m  [1m[32mINSERT INTO "books" ("name", "year", "quantity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "book19"], ["year", 1707], ["quantity", 44], ["created_at", "2022-11-09 20:53:49.492577"], ["updated_at", "2022-11-09 20:53:49.492577"]]
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mGenre Load (0.2ms)[0m  [1m[34mSELECT "genres".* FROM "genres" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 2]]
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" ORDER BY "books"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mBooksGenre Create (0.6ms)[0m  [1m[32mINSERT INTO "books_genres" ("genre_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["genre_id", 818], ["book_id", 590], ["created_at", "2022-11-09 20:53:49.498534"], ["updated_at", "2022-11-09 20:53:49.498534"]]
+  [1m[36mBooksGenre Create (0.4ms)[0m  [1m[32mINSERT INTO "books_genres" ("genre_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["genre_id", 822], ["book_id", 590], ["created_at", "2022-11-09 20:53:49.502419"], ["updated_at", "2022-11-09 20:53:49.502419"]]
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mAuthor Load (0.2ms)[0m  [1m[34mSELECT "authors".* FROM "authors" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 2]]
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" ORDER BY "books"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mAuthorsBook Create (0.3ms)[0m  [1m[32mINSERT INTO "authors_books" ("author_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["author_id", 281], ["book_id", 590], ["created_at", "2022-11-09 20:53:49.508290"], ["updated_at", "2022-11-09 20:53:49.508290"]]
+  [1m[36mAuthorsBook Create (0.3ms)[0m  [1m[32mINSERT INTO "authors_books" ("author_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["author_id", 279], ["book_id", 590], ["created_at", "2022-11-09 20:53:49.511192"], ["updated_at", "2022-11-09 20:53:49.511192"]]
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mSubscriber Load (0.2ms)[0m  [1m[34mSELECT "subscribers".* FROM "subscribers" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSubscription Create (0.7ms)[0m  [1m[32mINSERT INTO "subscriptions" ("book_id", "subscriber_id", "is_active", "created_at", "updated_at", "start", "finish") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["book_id", 589], ["subscriber_id", 257], ["is_active", false], ["created_at", "2022-11-09 20:53:49.521342"], ["updated_at", "2022-11-09 20:53:49.521342"], ["start", nil], ["finish", nil]]
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mSubscriber Load (0.1ms)[0m  [1m[34mSELECT "subscribers".* FROM "subscribers" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSubscription Create (0.2ms)[0m  [1m[32mINSERT INTO "subscriptions" ("book_id", "subscriber_id", "is_active", "created_at", "updated_at", "start", "finish") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["book_id", 581], ["subscriber_id", 263], ["is_active", false], ["created_at", "2022-11-09 20:53:49.527144"], ["updated_at", "2022-11-09 20:53:49.527144"], ["start", nil], ["finish", nil]]
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mSubscriber Load (0.1ms)[0m  [1m[34mSELECT "subscribers".* FROM "subscribers" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSubscription Create (0.2ms)[0m  [1m[32mINSERT INTO "subscriptions" ("book_id", "subscriber_id", "is_active", "created_at", "updated_at", "start", "finish") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["book_id", 576], ["subscriber_id", 256], ["is_active", false], ["created_at", "2022-11-09 20:53:49.531850"], ["updated_at", "2022-11-09 20:53:49.531850"], ["start", nil], ["finish", nil]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mSubscriber Load (0.1ms)[0m  [1m[34mSELECT "subscribers".* FROM "subscribers" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSubscription Create (0.3ms)[0m  [1m[32mINSERT INTO "subscriptions" ("book_id", "subscriber_id", "is_active", "created_at", "updated_at", "start", "finish") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["book_id", 580], ["subscriber_id", 257], ["is_active", false], ["created_at", "2022-11-09 20:53:49.536284"], ["updated_at", "2022-11-09 20:53:49.536284"], ["start", nil], ["finish", nil]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mSubscriber Load (0.1ms)[0m  [1m[34mSELECT "subscribers".* FROM "subscribers" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSubscription Create (0.2ms)[0m  [1m[32mINSERT INTO "subscriptions" ("book_id", "subscriber_id", "is_active", "created_at", "updated_at", "start", "finish") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["book_id", 584], ["subscriber_id", 256], ["is_active", false], ["created_at", "2022-11-09 20:53:49.541274"], ["updated_at", "2022-11-09 20:53:49.541274"], ["start", nil], ["finish", nil]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mSubscriber Load (0.1ms)[0m  [1m[34mSELECT "subscribers".* FROM "subscribers" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSubscription Create (0.3ms)[0m  [1m[32mINSERT INTO "subscriptions" ("book_id", "subscriber_id", "is_active", "created_at", "updated_at", "start", "finish") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["book_id", 583], ["subscriber_id", 260], ["is_active", false], ["created_at", "2022-11-09 20:53:49.545735"], ["updated_at", "2022-11-09 20:53:49.545735"], ["start", nil], ["finish", nil]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mSubscriber Load (0.1ms)[0m  [1m[34mSELECT "subscribers".* FROM "subscribers" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSubscription Create (0.2ms)[0m  [1m[32mINSERT INTO "subscriptions" ("book_id", "subscriber_id", "is_active", "created_at", "updated_at", "start", "finish") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["book_id", 574], ["subscriber_id", 264], ["is_active", false], ["created_at", "2022-11-09 20:53:49.550550"], ["updated_at", "2022-11-09 20:53:49.550550"], ["start", nil], ["finish", nil]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mSubscriber Load (0.1ms)[0m  [1m[34mSELECT "subscribers".* FROM "subscribers" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSubscription Create (0.2ms)[0m  [1m[32mINSERT INTO "subscriptions" ("book_id", "subscriber_id", "is_active", "created_at", "updated_at", "start", "finish") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["book_id", 590], ["subscriber_id", 262], ["is_active", false], ["created_at", "2022-11-09 20:53:49.554946"], ["updated_at", "2022-11-09 20:53:49.554946"], ["start", nil], ["finish", nil]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mSubscriber Load (0.1ms)[0m  [1m[34mSELECT "subscribers".* FROM "subscribers" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSubscription Create (0.3ms)[0m  [1m[32mINSERT INTO "subscriptions" ("book_id", "subscriber_id", "is_active", "created_at", "updated_at", "start", "finish") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["book_id", 575], ["subscriber_id", 263], ["is_active", false], ["created_at", "2022-11-09 20:53:49.559425"], ["updated_at", "2022-11-09 20:53:49.559425"], ["start", nil], ["finish", nil]]
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mSubscriber Load (0.2ms)[0m  [1m[34mSELECT "subscribers".* FROM "subscribers" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSubscription Create (0.2ms)[0m  [1m[32mINSERT INTO "subscriptions" ("book_id", "subscriber_id", "is_active", "created_at", "updated_at", "start", "finish") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["book_id", 581], ["subscriber_id", 261], ["is_active", true], ["created_at", "2022-11-09 20:53:49.564106"], ["updated_at", "2022-11-09 20:53:49.564106"], ["start", nil], ["finish", nil]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mSubscriber Load (0.1ms)[0m  [1m[34mSELECT "subscribers".* FROM "subscribers" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSubscription Create (0.2ms)[0m  [1m[32mINSERT INTO "subscriptions" ("book_id", "subscriber_id", "is_active", "created_at", "updated_at", "start", "finish") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["book_id", 578], ["subscriber_id", 263], ["is_active", true], ["created_at", "2022-11-09 20:53:49.568540"], ["updated_at", "2022-11-09 20:53:49.568540"], ["start", nil], ["finish", nil]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mSubscriber Load (0.1ms)[0m  [1m[34mSELECT "subscribers".* FROM "subscribers" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSubscription Create (0.2ms)[0m  [1m[32mINSERT INTO "subscriptions" ("book_id", "subscriber_id", "is_active", "created_at", "updated_at", "start", "finish") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["book_id", 586], ["subscriber_id", 262], ["is_active", true], ["created_at", "2022-11-09 20:53:49.572930"], ["updated_at", "2022-11-09 20:53:49.572930"], ["start", nil], ["finish", nil]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mSubscriber Load (0.1ms)[0m  [1m[34mSELECT "subscribers".* FROM "subscribers" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSubscription Create (0.2ms)[0m  [1m[32mINSERT INTO "subscriptions" ("book_id", "subscriber_id", "is_active", "created_at", "updated_at", "start", "finish") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["book_id", 590], ["subscriber_id", 257], ["is_active", true], ["created_at", "2022-11-09 20:53:49.577762"], ["updated_at", "2022-11-09 20:53:49.577762"], ["start", nil], ["finish", nil]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mSubscriber Load (0.1ms)[0m  [1m[34mSELECT "subscribers".* FROM "subscribers" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSubscription Create (0.2ms)[0m  [1m[32mINSERT INTO "subscriptions" ("book_id", "subscriber_id", "is_active", "created_at", "updated_at", "start", "finish") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["book_id", 583], ["subscriber_id", 256], ["is_active", true], ["created_at", "2022-11-09 20:53:49.582136"], ["updated_at", "2022-11-09 20:53:49.582136"], ["start", nil], ["finish", nil]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mSubscriber Load (0.1ms)[0m  [1m[34mSELECT "subscribers".* FROM "subscribers" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSubscription Create (0.2ms)[0m  [1m[32mINSERT INTO "subscriptions" ("book_id", "subscriber_id", "is_active", "created_at", "updated_at", "start", "finish") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["book_id", 588], ["subscriber_id", 261], ["is_active", false], ["created_at", "2022-11-09 20:53:49.586948"], ["updated_at", "2022-11-09 20:53:49.586948"], ["start", nil], ["finish", nil]]
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mSubscriber Load (0.1ms)[0m  [1m[34mSELECT "subscribers".* FROM "subscribers" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSubscription Create (0.2ms)[0m  [1m[32mINSERT INTO "subscriptions" ("book_id", "subscriber_id", "is_active", "created_at", "updated_at", "start", "finish") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["book_id", 584], ["subscriber_id", 264], ["is_active", true], ["created_at", "2022-11-09 20:53:49.591248"], ["updated_at", "2022-11-09 20:53:49.591248"], ["start", nil], ["finish", nil]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mSubscriber Load (0.1ms)[0m  [1m[34mSELECT "subscribers".* FROM "subscribers" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSubscription Create (0.2ms)[0m  [1m[32mINSERT INTO "subscriptions" ("book_id", "subscriber_id", "is_active", "created_at", "updated_at", "start", "finish") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["book_id", 588], ["subscriber_id", 257], ["is_active", true], ["created_at", "2022-11-09 20:53:49.597055"], ["updated_at", "2022-11-09 20:53:49.597055"], ["start", nil], ["finish", nil]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mSubscriber Load (0.1ms)[0m  [1m[34mSELECT "subscribers".* FROM "subscribers" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSubscription Create (0.2ms)[0m  [1m[32mINSERT INTO "subscriptions" ("book_id", "subscriber_id", "is_active", "created_at", "updated_at", "start", "finish") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["book_id", 572], ["subscriber_id", 264], ["is_active", true], ["created_at", "2022-11-09 20:53:49.601714"], ["updated_at", "2022-11-09 20:53:49.601714"], ["start", nil], ["finish", nil]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mSubscriber Load (0.1ms)[0m  [1m[34mSELECT "subscribers".* FROM "subscribers" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSubscription Create (0.1ms)[0m  [1m[32mINSERT INTO "subscriptions" ("book_id", "subscriber_id", "is_active", "created_at", "updated_at", "start", "finish") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["book_id", 586], ["subscriber_id", 265], ["is_active", false], ["created_at", "2022-11-09 20:53:49.606301"], ["updated_at", "2022-11-09 20:53:49.606301"], ["start", nil], ["finish", nil]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mSubscriber Load (0.1ms)[0m  [1m[34mSELECT "subscribers".* FROM "subscribers" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSubscription Create (0.2ms)[0m  [1m[32mINSERT INTO "subscriptions" ("book_id", "subscriber_id", "is_active", "created_at", "updated_at", "start", "finish") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["book_id", 576], ["subscriber_id", 264], ["is_active", true], ["created_at", "2022-11-09 20:53:49.610669"], ["updated_at", "2022-11-09 20:53:49.610669"], ["start", nil], ["finish", nil]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mSubscription Delete All (0.6ms)[0m  [1m[31mDELETE FROM "subscriptions"[0m
+  [1m[36mAuthorsBook Delete All (0.5ms)[0m  [1m[31mDELETE FROM "authors_books"[0m
+  [1m[36mBooksGenre Delete All (0.5ms)[0m  [1m[31mDELETE FROM "books_genres"[0m
+  [1m[36mBook Delete All (1.7ms)[0m  [1m[31mDELETE FROM "books"[0m
+  [1m[36mGenre Delete All (0.9ms)[0m  [1m[31mDELETE FROM "genres"[0m
+  [1m[36mAuthor Delete All (0.8ms)[0m  [1m[31mDELETE FROM "authors"[0m
+  [1m[36mSubscriber Delete All (0.8ms)[0m  [1m[31mDELETE FROM "subscribers"[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mAuthor Create (0.3ms)[0m  [1m[32mINSERT INTO "authors" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Д. Кнут"], ["created_at", "2022-11-09 20:54:56.455720"], ["updated_at", "2022-11-09 20:54:56.455720"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mAuthor Create (0.1ms)[0m  [1m[32mINSERT INTO "authors" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "А. Азимов"], ["created_at", "2022-11-09 20:54:56.459065"], ["updated_at", "2022-11-09 20:54:56.459065"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mAuthor Create (0.1ms)[0m  [1m[32mINSERT INTO "authors" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Д. Карнеги"], ["created_at", "2022-11-09 20:54:56.461422"], ["updated_at", "2022-11-09 20:54:56.461422"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mAuthor Create (0.1ms)[0m  [1m[32mINSERT INTO "authors" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Л.Д. Ландау"], ["created_at", "2022-11-09 20:54:56.463862"], ["updated_at", "2022-11-09 20:54:56.463862"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mAuthor Create (0.1ms)[0m  [1m[32mINSERT INTO "authors" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Е.М. Лифшиц"], ["created_at", "2022-11-09 20:54:56.466319"], ["updated_at", "2022-11-09 20:54:56.466319"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mAuthor Create (0.1ms)[0m  [1m[32mINSERT INTO "authors" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Б. Страуструп"], ["created_at", "2022-11-09 20:54:56.468726"], ["updated_at", "2022-11-09 20:54:56.468726"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mAuthor Create (0.1ms)[0m  [1m[32mINSERT INTO "authors" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "А.С. Пушкин"], ["created_at", "2022-11-09 20:54:56.471101"], ["updated_at", "2022-11-09 20:54:56.471101"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mBook Create (0.3ms)[0m  [1m[32mINSERT INTO "books" ("name", "year", "quantity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Евгений Онегин"], ["year", 1985], ["quantity", 2], ["created_at", "2022-11-09 20:54:56.477976"], ["updated_at", "2022-11-09 20:54:56.477976"]]
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mBook Create (0.2ms)[0m  [1m[32mINSERT INTO "books" ("name", "year", "quantity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Сказка о рыбаке и рыбке"], ["year", 1990], ["quantity", 3], ["created_at", "2022-11-09 20:54:56.482259"], ["updated_at", "2022-11-09 20:54:56.482259"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mBook Create (0.1ms)[0m  [1m[32mINSERT INTO "books" ("name", "year", "quantity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Основание и империя"], ["year", 2000], ["quantity", 5], ["created_at", "2022-11-09 20:54:56.485216"], ["updated_at", "2022-11-09 20:54:56.485216"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mBook Create (0.1ms)[0m  [1m[32mINSERT INTO "books" ("name", "year", "quantity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Психология программирования"], ["year", 1998], ["quantity", 1], ["created_at", "2022-11-09 20:54:56.487889"], ["updated_at", "2022-11-09 20:54:56.487889"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mBook Create (0.1ms)[0m  [1m[32mINSERT INTO "books" ("name", "year", "quantity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Язык программирования С++"], ["year", 1996], ["quantity", 3], ["created_at", "2022-11-09 20:54:56.490398"], ["updated_at", "2022-11-09 20:54:56.490398"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mBook Create (0.1ms)[0m  [1m[32mINSERT INTO "books" ("name", "year", "quantity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Курс теоритической физики"], ["year", 1981], ["quantity", 12], ["created_at", "2022-11-09 20:54:56.492976"], ["updated_at", "2022-11-09 20:54:56.492976"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mBook Create (0.1ms)[0m  [1m[32mINSERT INTO "books" ("name", "year", "quantity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Искусство программирования"], ["year", 1993], ["quantity", 7], ["created_at", "2022-11-09 20:54:56.495525"], ["updated_at", "2022-11-09 20:54:56.495525"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGenre Create (0.2ms)[0m  [1m[32mINSERT INTO "genres" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Поэзия"], ["created_at", "2022-11-09 20:54:56.500118"], ["updated_at", "2022-11-09 20:54:56.500118"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGenre Create (0.1ms)[0m  [1m[32mINSERT INTO "genres" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Программирование"], ["created_at", "2022-11-09 20:54:56.502777"], ["updated_at", "2022-11-09 20:54:56.502777"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGenre Create (0.1ms)[0m  [1m[32mINSERT INTO "genres" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Психология"], ["created_at", "2022-11-09 20:54:56.505329"], ["updated_at", "2022-11-09 20:54:56.505329"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGenre Create (0.1ms)[0m  [1m[32mINSERT INTO "genres" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Наука"], ["created_at", "2022-11-09 20:54:56.507758"], ["updated_at", "2022-11-09 20:54:56.507758"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGenre Create (0.1ms)[0m  [1m[32mINSERT INTO "genres" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Классика"], ["created_at", "2022-11-09 20:54:56.510213"], ["updated_at", "2022-11-09 20:54:56.510213"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGenre Create (0.1ms)[0m  [1m[32mINSERT INTO "genres" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Фантастика"], ["created_at", "2022-11-09 20:54:56.512691"], ["updated_at", "2022-11-09 20:54:56.512691"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSubscriber Create (0.2ms)[0m  [1m[32mINSERT INTO "subscribers" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Иванов И.И."], ["created_at", "2022-11-09 20:54:56.517125"], ["updated_at", "2022-11-09 20:54:56.517125"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSubscriber Create (0.1ms)[0m  [1m[32mINSERT INTO "subscribers" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Петров П.П."], ["created_at", "2022-11-09 20:54:56.519847"], ["updated_at", "2022-11-09 20:54:56.519847"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSubscriber Create (0.1ms)[0m  [1m[32mINSERT INTO "subscribers" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Сидоров С.С."], ["created_at", "2022-11-09 20:54:56.522282"], ["updated_at", "2022-11-09 20:54:56.522282"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSubscriber Create (0.1ms)[0m  [1m[32mINSERT INTO "subscribers" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Сидоров С.С."], ["created_at", "2022-11-09 20:54:56.524816"], ["updated_at", "2022-11-09 20:54:56.524816"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  [1m[36mAuthor Load (0.1ms)[0m  [1m[34mSELECT "authors".* FROM "authors"[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mAuthorsBook Create (0.4ms)[0m  [1m[32mINSERT INTO "authors_books" ("author_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["author_id", 292], ["book_id", 591], ["created_at", "2022-11-09 20:54:56.534028"], ["updated_at", "2022-11-09 20:54:56.534028"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mAuthorsBook Create (0.2ms)[0m  [1m[32mINSERT INTO "authors_books" ("author_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["author_id", 292], ["book_id", 592], ["created_at", "2022-11-09 20:54:56.537307"], ["updated_at", "2022-11-09 20:54:56.537307"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mAuthorsBook Create (0.2ms)[0m  [1m[32mINSERT INTO "authors_books" ("author_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["author_id", 287], ["book_id", 593], ["created_at", "2022-11-09 20:54:56.540080"], ["updated_at", "2022-11-09 20:54:56.540080"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mAuthorsBook Create (0.2ms)[0m  [1m[32mINSERT INTO "authors_books" ("author_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["author_id", 288], ["book_id", 594], ["created_at", "2022-11-09 20:54:56.542663"], ["updated_at", "2022-11-09 20:54:56.542663"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mAuthorsBook Create (0.2ms)[0m  [1m[32mINSERT INTO "authors_books" ("author_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["author_id", 291], ["book_id", 594], ["created_at", "2022-11-09 20:54:56.545371"], ["updated_at", "2022-11-09 20:54:56.545371"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mAuthorsBook Create (0.2ms)[0m  [1m[32mINSERT INTO "authors_books" ("author_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["author_id", 291], ["book_id", 595], ["created_at", "2022-11-09 20:54:56.548018"], ["updated_at", "2022-11-09 20:54:56.548018"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mAuthorsBook Create (0.1ms)[0m  [1m[32mINSERT INTO "authors_books" ("author_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["author_id", 290], ["book_id", 596], ["created_at", "2022-11-09 20:54:56.550715"], ["updated_at", "2022-11-09 20:54:56.550715"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mAuthorsBook Create (0.2ms)[0m  [1m[32mINSERT INTO "authors_books" ("author_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["author_id", 289], ["book_id", 596], ["created_at", "2022-11-09 20:54:56.553287"], ["updated_at", "2022-11-09 20:54:56.553287"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mAuthorsBook Create (0.2ms)[0m  [1m[32mINSERT INTO "authors_books" ("author_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["author_id", 286], ["book_id", 597], ["created_at", "2022-11-09 20:54:56.555988"], ["updated_at", "2022-11-09 20:54:56.555988"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mGenre Load (0.1ms)[0m  [1m[34mSELECT "genres".* FROM "genres"[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mBooksGenre Create (0.3ms)[0m  [1m[32mINSERT INTO "books_genres" ("genre_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["genre_id", 828], ["book_id", 591], ["created_at", "2022-11-09 20:54:56.563272"], ["updated_at", "2022-11-09 20:54:56.563272"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mBooksGenre Create (0.3ms)[0m  [1m[32mINSERT INTO "books_genres" ("genre_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["genre_id", 832], ["book_id", 591], ["created_at", "2022-11-09 20:54:56.566307"], ["updated_at", "2022-11-09 20:54:56.566307"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mBooksGenre Create (0.2ms)[0m  [1m[32mINSERT INTO "books_genres" ("genre_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["genre_id", 828], ["book_id", 592], ["created_at", "2022-11-09 20:54:56.576004"], ["updated_at", "2022-11-09 20:54:56.576004"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mBooksGenre Create (0.2ms)[0m  [1m[32mINSERT INTO "books_genres" ("genre_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["genre_id", 832], ["book_id", 592], ["created_at", "2022-11-09 20:54:56.579145"], ["updated_at", "2022-11-09 20:54:56.579145"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mBooksGenre Create (0.2ms)[0m  [1m[32mINSERT INTO "books_genres" ("genre_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["genre_id", 833], ["book_id", 593], ["created_at", "2022-11-09 20:54:56.581872"], ["updated_at", "2022-11-09 20:54:56.581872"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mBooksGenre Create (0.2ms)[0m  [1m[32mINSERT INTO "books_genres" ("genre_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["genre_id", 829], ["book_id", 594], ["created_at", "2022-11-09 20:54:56.584591"], ["updated_at", "2022-11-09 20:54:56.584591"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mBooksGenre Create (0.2ms)[0m  [1m[32mINSERT INTO "books_genres" ("genre_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["genre_id", 830], ["book_id", 594], ["created_at", "2022-11-09 20:54:56.587330"], ["updated_at", "2022-11-09 20:54:56.587330"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mBooksGenre Create (0.2ms)[0m  [1m[32mINSERT INTO "books_genres" ("genre_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["genre_id", 829], ["book_id", 595], ["created_at", "2022-11-09 20:54:56.590008"], ["updated_at", "2022-11-09 20:54:56.590008"]]
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mBooksGenre Create (0.2ms)[0m  [1m[32mINSERT INTO "books_genres" ("genre_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["genre_id", 832], ["book_id", 596], ["created_at", "2022-11-09 20:54:56.592872"], ["updated_at", "2022-11-09 20:54:56.592872"]]
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mBooksGenre Create (0.2ms)[0m  [1m[32mINSERT INTO "books_genres" ("genre_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["genre_id", 829], ["book_id", 597], ["created_at", "2022-11-09 20:54:56.595916"], ["updated_at", "2022-11-09 20:54:56.595916"]]
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mBooksGenre Create (0.2ms)[0m  [1m[32mINSERT INTO "books_genres" ("genre_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["genre_id", 832], ["book_id", 597], ["created_at", "2022-11-09 20:54:56.598927"], ["updated_at", "2022-11-09 20:54:56.598927"]]
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mSubscriber Load (0.1ms)[0m  [1m[34mSELECT "subscribers".* FROM "subscribers"[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSubscription Create (0.4ms)[0m  [1m[32mINSERT INTO "subscriptions" ("book_id", "subscriber_id", "is_active", "created_at", "updated_at", "start", "finish") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["book_id", 593], ["subscriber_id", 266], ["is_active", false], ["created_at", "2022-11-09 20:54:56.608261"], ["updated_at", "2022-11-09 20:54:56.608261"], ["start", "2011-01-12 00:00:00"], ["finish", "2011-02-12 00:00:00"]]
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSubscription Create (0.3ms)[0m  [1m[32mINSERT INTO "subscriptions" ("book_id", "subscriber_id", "is_active", "created_at", "updated_at", "start", "finish") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["book_id", 591], ["subscriber_id", 266], ["is_active", false], ["created_at", "2022-11-09 20:54:56.611787"], ["updated_at", "2022-11-09 20:54:56.611787"], ["start", "2011-01-12 00:00:00"], ["finish", "2011-02-12 00:00:00"]]
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSubscription Create (0.2ms)[0m  [1m[32mINSERT INTO "subscriptions" ("book_id", "subscriber_id", "is_active", "created_at", "updated_at", "start", "finish") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["book_id", 593], ["subscriber_id", 268], ["is_active", true], ["created_at", "2022-11-09 20:54:56.615046"], ["updated_at", "2022-11-09 20:54:56.615046"], ["start", "2012-05-17 00:00:00"], ["finish", "2012-07-17 00:00:00"]]
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSubscription Create (0.2ms)[0m  [1m[32mINSERT INTO "subscriptions" ("book_id", "subscriber_id", "is_active", "created_at", "updated_at", "start", "finish") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["book_id", 592], ["subscriber_id", 266], ["is_active", false], ["created_at", "2022-11-09 20:54:56.618147"], ["updated_at", "2022-11-09 20:54:56.618147"], ["start", "2012-06-11 00:00:00"], ["finish", "2012-08-11 00:00:00"]]
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSubscription Create (0.2ms)[0m  [1m[32mINSERT INTO "subscriptions" ("book_id", "subscriber_id", "is_active", "created_at", "updated_at", "start", "finish") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["book_id", 595], ["subscriber_id", 269], ["is_active", false], ["created_at", "2022-11-09 20:54:56.621237"], ["updated_at", "2022-11-09 20:54:56.621237"], ["start", "2012-06-11 00:00:00"], ["finish", "2012-08-11 00:00:00"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSubscription Create (0.4ms)[0m  [1m[32mINSERT INTO "subscriptions" ("book_id", "subscriber_id", "is_active", "created_at", "updated_at", "start", "finish") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["book_id", 597], ["subscriber_id", 266], ["is_active", false], ["created_at", "2022-11-09 20:54:56.624111"], ["updated_at", "2022-11-09 20:54:56.624111"], ["start", "2014-08-03 00:00:00"], ["finish", "2014-10-03 00:00:00"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSubscription Create (0.2ms)[0m  [1m[32mINSERT INTO "subscriptions" ("book_id", "subscriber_id", "is_active", "created_at", "updated_at", "start", "finish") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["book_id", 595], ["subscriber_id", 268], ["is_active", true], ["created_at", "2022-11-09 20:54:56.627728"], ["updated_at", "2022-11-09 20:54:56.627728"], ["start", "2014-08-03 00:00:00"], ["finish", "2014-10-03 00:00:00"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSubscription Create (0.2ms)[0m  [1m[32mINSERT INTO "subscriptions" ("book_id", "subscriber_id", "is_active", "created_at", "updated_at", "start", "finish") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["book_id", 591], ["subscriber_id", 268], ["is_active", true], ["created_at", "2022-11-09 20:54:56.630585"], ["updated_at", "2022-11-09 20:54:56.630585"], ["start", "2014-08-03 00:00:00"], ["finish", "2014-09-03 00:00:00"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSubscription Create (0.2ms)[0m  [1m[32mINSERT INTO "subscriptions" ("book_id", "subscriber_id", "is_active", "created_at", "updated_at", "start", "finish") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["book_id", 591], ["subscriber_id", 269], ["is_active", true], ["created_at", "2022-11-09 20:54:56.633228"], ["updated_at", "2022-11-09 20:54:56.633228"], ["start", "2015-10-07 00:00:00"], ["finish", "2015-03-07 00:00:00"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSubscription Create (0.2ms)[0m  [1m[32mINSERT INTO "subscriptions" ("book_id", "subscriber_id", "is_active", "created_at", "updated_at", "start", "finish") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["book_id", 594], ["subscriber_id", 266], ["is_active", false], ["created_at", "2022-11-09 20:54:56.636090"], ["updated_at", "2022-11-09 20:54:56.636090"], ["start", "2015-10-07 00:00:00"], ["finish", "2015-11-07 00:00:00"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSubscription Create (0.2ms)[0m  [1m[32mINSERT INTO "subscriptions" ("book_id", "subscriber_id", "is_active", "created_at", "updated_at", "start", "finish") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["book_id", 594], ["subscriber_id", 269], ["is_active", true], ["created_at", "2022-11-09 20:54:56.638805"], ["updated_at", "2022-11-09 20:54:56.638805"], ["start", "2015-10-08 00:00:00"], ["finish", "2025-11-08 00:00:00"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mBook Load (0.3ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
