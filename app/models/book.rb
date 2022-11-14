@@ -16,5 +16,6 @@ class Book < ApplicationRecord
   inclusion: { in: (1700..2022),
               message: '%<value> is not a valid size', allow_nil: true }
   validates :quantity, numericality: { only_integer: true }
+  validates :name, uniqueness:{scope: :year}
 
 end

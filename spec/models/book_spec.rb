@@ -11,7 +11,7 @@ RSpec.describe Book, type: :model do
   describe 'validations' do
     subject { build(:book) }
 
-    it { is_expected.to validate_uniqueness_of(:name).scoped_to(:year).with_message('must be unique!') }
+    it { is_expected.to validate_uniqueness_of(:name).scoped_to(:year) }
     it { should validate_numericality_of(:year) }
     it { should validate_length_of(:name).is_at_least(3) }
     it { should validate_numericality_of(:year) }
