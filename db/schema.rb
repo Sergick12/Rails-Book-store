@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_09_205133) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_13_212507) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -25,6 +25,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_09_205133) do
     t.bigint "book_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["author_id", "book_id"], name: "index_authors_books_on_author_id_and_book_id", unique: true
     t.index ["author_id"], name: "index_authors_books_on_author_id"
     t.index ["book_id"], name: "index_authors_books_on_book_id"
   end
@@ -32,7 +33,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_09_205133) do
   create_table "books", force: :cascade do |t|
     t.string "name"
     t.integer "year"
-    t.integer "quantity"
+    t.integer "quantity", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -12,9 +12,10 @@ class Book < ApplicationRecord
   validates_associated :subscriptions
 
   validates :name, presence: true , length: { minimum: 3 }
-  validates :year, numericality: { only_integer: true } , 
-  inclusion: { in: (1700..2022),
-              message: '%<value> is not a valid size', allow_nil: true }
+  validates :year, numericality: { only_integer: true }
   validates :quantity, numericality: { only_integer: true }
-
+  validates :name, uniqueness:{scope: :year, message: 'must be unique!'}
+  
+  accepts_nested_attributes_for :authors
+  accepts_nested_attributes_for :genres
 end
