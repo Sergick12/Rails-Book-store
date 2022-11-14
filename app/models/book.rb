@@ -18,7 +18,7 @@ class Book < ApplicationRecord
   validates :quantity, numericality: { only_integer: true }
   validates :name, uniqueness:{scope: :year}
 
-  accepts_nested_attributes_for :authors 
+  accepts_nested_attributes_for :authors
   accepts_nested_attributes_for :genres
 
 end
