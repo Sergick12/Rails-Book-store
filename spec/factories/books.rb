@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :book do
-    sequence(:name) { |n| "name#{n}" }
+    name { Faker::Name.name }
     year { rand(2017..2020) }
     quantity { rand(1..15) }
     trait :old do
