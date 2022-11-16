@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Subscription
+module Subscriptions
   class ShowAvengerDays
     def self.call
       active_false = Subscription.where('is_active = ?', false).sum('finish - start')

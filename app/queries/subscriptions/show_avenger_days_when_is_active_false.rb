@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Subscription
+module Subscriptions
   class ShowAvengerDaysWhenIsActiveFalse
     def self.call
       is_active = Subscription.where('is_active = ?', false)
