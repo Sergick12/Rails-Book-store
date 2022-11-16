@@ -6,7 +6,6 @@ class SubscriptionsController < ApplicationController
   # GET /subscriptions or /subscriptions.json
   def index
     @subscriptions = Subscription.includes(:subscriber, :book)
-    debugger
     render json: SubscriptionBlueprint.render(@subscriptions)
   end
 
