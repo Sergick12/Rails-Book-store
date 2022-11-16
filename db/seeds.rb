@@ -20,7 +20,7 @@ Subscriber.delete_all
 
 10.times do |index|
   Book.create(name: Faker::Book.title, year: rand(1700..2022), quantity: rand(1..100), 
-  authors_attributes: [{name: Faker::name}],
+  authors_attributes: [{name: Faker::Name.name}],
   genres_attributes:[name: Faker::Book.genre])
 end
 
