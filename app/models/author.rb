@@ -8,5 +8,6 @@ class Author < ApplicationRecord
 
   validates :name, presence: true
   validates :name, length: { minimum: 3 }
-  #validates :name, has_name_styles: true
+  validates :name, presence: true, has_name_styles: true
+
 end
