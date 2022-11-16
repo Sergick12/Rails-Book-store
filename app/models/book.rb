@@ -14,16 +14,8 @@ class Book < ApplicationRecord
   validates :name, presence: true , length: { minimum: 3 }
   validates :year, numericality: { only_integer: true }
   validates :quantity, numericality: { only_integer: true }
-<<<<<<< HEAD
-  validates :name, uniqueness:{scope: :year}
-
-  accepts_nested_attributes_for :authors
-  accepts_nested_attributes_for :genres
-
-=======
   validates :name, uniqueness:{scope: :year, message: 'must be unique!'}
   
   accepts_nested_attributes_for :authors
   accepts_nested_attributes_for :genres
->>>>>>> Validation
 end
