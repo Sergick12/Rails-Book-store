@@ -24,15 +24,8 @@ module Api
 
       # POST /books or /books.json
       def create
-        @book = Book.new(book_params)
-
-        respond_to do |_format|
-          if @book.save
-            render json: @book, status: :created
-          else
-            render json: @book.errors, status: :unprocessable_entity
-          end
-        end
+        @book = ::Admin::Books::Create.call(params)
+        render json: BookBlueprint.render(@book), status: :created
       end
 
       # PATCH/PUT /books/1 or /books/1.json
