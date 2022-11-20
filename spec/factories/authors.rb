@@ -13,7 +13,6 @@ FactoryBot.define do
         end
         authors.reload
       end
-
     end
   end
 end
