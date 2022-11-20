@@ -1,21 +1,18 @@
 # frozen_string_literal: true
 
 module Api
-  module V1
+  module Admin
     class BooksController < ApplicationController
       before_action :set_book, only: %i[show edit update destroy]
 
       # GET /books or /books.json
       def index
-        @books = Book.includes(:book)
+        @books = Book.includes(:authors).where(authors_books: { author_id: params[:author_id] })
         render json: BookBlueprint.render(@books)
       end
 
       # GET /books/1 or /books/1.json
-      def show
-        @book = Book.find(params[:id])
-        render json: BookBlueprint.render(@books)
-      end
+      def show; end
 
       # GET /books/new
       def new
@@ -27,27 +24,27 @@ module Api
 
       # POST /books or /books.json
       def create
-        author_id = params[:book][:authors_attributes][0][:id]
-        if author_id.present?
-          ActiveRecord::Base.transaction do
-            @book = Book.create!(book_authors_params)
-            @book.authors << Author.find(author_id)
-            @book.save!
+        @book = Book.new(book_params)
+
+        respond_to do |_format|
+          if @book.save
+            render json: @book, status: :created
+          else
+            render json: @book.errors, status: :unprocessable_entity
           end
-        else
-          Book.create!(book_create_params)
         end
-        render json: @book, status: :created
       end
 
       # PATCH/PUT /books/1 or /books/1.json
       def update
-        if @book.update(book_params)
-          format.html { redirect_to book_url(@book), notice: 'Book was successfully updated.' }
-          format.json { render :show, status: :ok, location: @book }
-        else
-          format.html { render :edit, status: :unprocessable_entity }
-          format.json { render json: @book.errors, status: :unprocessable_entity }
+        respond_to do |format|
+          if @book.update(book_params)
+            format.html { redirect_to book_url(@book), notice: 'Book was successfully updated.' }
+            format.json { render :show, status: :ok, location: @book }
+          else
+            format.html { render :edit, status: :unprocessable_entity }
+            format.json { render json: @book.errors, status: :unprocessable_entity }
+          end
         end
       end
 
@@ -69,12 +66,8 @@ module Api
       end
 
       # Only allow a list of trusted parameters through.
-      def book_authors_params
+      def book_params
         params.require(:book).permit(:name, :year, :quantity)
-      end
-
-      def book_create_params
-        params.require(:book).permit(:name, :year, :quantity, authors_attributes: [:name])
       end
     end
   end

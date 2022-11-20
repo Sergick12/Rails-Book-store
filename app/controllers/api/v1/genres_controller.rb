@@ -1,0 +1,77 @@
+# frozen_string_literal: true
+
+module Api
+  module V1
+    class GenresController < ApplicationController
+      before_action :set_genre, only: %i[show edit update destroy]
+
+      # GET /genres or /genres.json
+      def index
+        @genres = Genre.includes(books: :authors)
+        render json: GenreBlueprint.render(@genres)
+      end
+
+      # GET /genres/1 or /genres/1.json
+      def show
+        @genre = Genre.includes(:books).find(params[:id])
+        render json: GenreBlueprint.render(@genre)
+      end
+
+      # GET /genres/new
+      def new
+        @genre = Genre.new
+      end
+
+      # GET /genres/1/edit
+      def edit; end
+
+      # POST /genres or /genres.json
+      def create
+        @genre = Genre.new(genre_params)
+
+        respond_to do |_format|
+          if @genre.save
+            render json: @genre, status: :created
+          else
+            render json: @genre.errors, status: :unprocessable_entity
+          end
+        end
+      end
+
+      # PATCH/PUT /genres/1 or /genres/1.json
+      def update
+        respond_to do |format|
+          if @genre.update(genre_params)
+            format.html { redirect_to genre_url(@genre), notice: 'Genre was successfully updated.' }
+            format.json { render :show, status: :ok, location: @genre }
+          else
+            format.html { render :edit, status: :unprocessable_entity }
+            format.json { render json: @genre.errors, status: :unprocessable_entity }
+          end
+        end
+      end
+
+      # DELETE /genres/1 or /genres/1.json
+      def destroy
+        @genre.destroy
+
+        respond_to do |format|
+          format.html { redirect_to genres_url, notice: 'Genre was successfully destroyed.' }
+          format.json { head :no_content }
+        end
+      end
+
+      private
+
+      # Use callbacks to share common setup or constraints between actions.
+      def set_genre
+        @genre = Genre.find(params[:id])
+      end
+
+      # Only allow a list of trusted parameters through.
+      def genre_params
+        params.require(:genre).permit(:name)
+      end
+    end
+  end
+end

@@ -1,20 +1,17 @@
 # frozen_string_literal: true
 
 module Api
-  module V1
+  module Admin
     class AuthorsController < ApplicationController
       before_action :set_author, only: %i[show edit update destroy]
       # GET /authors or /authors.json
       def index
-        @authors = Author.includes(books: %i[genres authors])
+        @authors = Author.includes(:book)
         render json: AuthorBlueprint.render(@authors)
       end
 
       # GET /authors/1 or /authors/1.json
-      def show
-        @author = Author.includes(:books).find(params[:id])
-        render json: AuthorBlueprint.render(@author)
-      end
+      def show; end
 
       # GET /authors/new
       def new
