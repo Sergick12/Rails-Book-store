@@ -10,14 +10,24 @@ Rails.application.routes.draw do
       resources :genres do
         resources :books
       end
-        resources :subscribers do
-          resources :subscriptions
-        end
+      resources :subscribers do
+        resources :subscriptions
       end
     end
-
+    namespace :admin do
+      resources :authors
+      resources :genres do
+        resources :books
+      end
+      resources :books
+      resources :subscribers do
+        resources :subscriptions
+      end
+      resources :subscriptions
+    end
+  end
   # resources :subscriptions
-  # resources :subscribers
+  # resources :subscribersw
   # resources :authors
   # resources :books
   # resources :genres
