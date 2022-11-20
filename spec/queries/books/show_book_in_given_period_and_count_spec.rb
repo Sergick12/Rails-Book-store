@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Books::ShowBookInGivenPeriodAndCount do
@@ -8,7 +10,7 @@ RSpec.describe Books::ShowBookInGivenPeriodAndCount do
 
   context '#call' do
     it do
-      expect(described_class.call).to eq({2018 => 5})
+      expect(described_class.call).to eq({ 2018 => 5 })
     end
   end
 end

@@ -11,9 +11,9 @@ RSpec.describe Author, type: :model do
   end
 
   describe 'validations' do
-    subject { create(:author)}
+    subject { create(:author) }
 
-    it { is_expected.to validate_presence_of(:name)}
+    it { is_expected.to validate_presence_of(:name) }
     it { is_expected.to validate_length_of(:name).is_at_least(3) }
   end
 end

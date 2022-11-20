@@ -1,4 +1,4 @@
-    # frozen_string_literal: true
+# frozen_string_literal: true
 
 require 'rails_helper'
 
@@ -11,7 +11,7 @@ RSpec.describe Subscription, type: :model do
   end
 
   describe 'validations' do
-    subject { create(:subscription)}
+    subject { create(:subscription) }
 
     it { is_expected.to validate_presence_of(:start) }
     it { is_expected.to validate_presence_of(:finish) }
