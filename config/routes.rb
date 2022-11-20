@@ -3,21 +3,22 @@
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
+      resources :books
       resources :authors do
         resources :books
       end
+      resources :genres do
+        resources :books
+      end
+        resources :subscribers do
+          resources :subscriptions
+        end
+      end
     end
-  end
 
-   resources :subscriptions
-   resources :authors_books
-   resources :subscribers
-   resources :books_genres
-   resources :books
-   resources :genres
-
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Defines the root path route ("/")
-  # root "articles#index"
+  # resources :subscriptions
+  # resources :subscribers
+  # resources :authors
+  # resources :books
+  # resources :genres
 end

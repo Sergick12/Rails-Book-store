@@ -1,12 +1,11 @@
+# frozen_string_literal: true
+
 class HasNameStylesValidator < ActiveModel::EachValidator
   def validate_each(record, attribute, value)
-    if (value.nil? || value == "")
-      return record.errors.add(:name, "doesn't be empty") 
-     end
-     value.split.each { |x|
-       if x.match(/(^[A-Z])([a-z]+)/).nil?
-          record.errors.add(attribute ,:blank, message: "doesn't fit the style")
-       end
-     } 
+    return record.errors.add(:name, "doesn't be empty") if value.nil? || value == ''
+
+    value.split.each do |x|
+      record.errors.add(attribute, :blank, message: "doesn't fit the style") if x.match(/(^[A-Z])([a-z]+)/).nil?
+    end
   end
 end

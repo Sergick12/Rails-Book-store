@@ -1,7 +1,7 @@
 # frozen_string_literal: true
+
 # Subscription.joins(:subscriber).eager_load(:subscriber).find_each { |x| p
 #   "#{x&.subscriber&.name}" }
-
 
 module Books
   class ShowUniqAllBook
@@ -13,5 +13,3 @@ module Books
     end
   end
 end
-
-

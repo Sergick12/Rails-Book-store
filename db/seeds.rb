@@ -16,14 +16,11 @@ Genre.delete_all
 Author.delete_all
 Subscriber.delete_all
 
-
-
-10.times do |index|
-  Book.create(name: Faker::Book.title, year: rand(1700..2022), quantity: rand(1..100), 
-  authors_attributes: [{name: Faker::Name.name}],
-  genres_attributes:[name: Faker::Book.genre])
+10.times do |_index|
+  Book.create(name: Faker::Book.title, year: rand(1700..2022), quantity: rand(1..100),
+              authors_attributes: [{ name: Faker::Name.name }],
+              genres_attributes: [name: Faker::Book.genre])
 end
-
 
 10.times do |index|
   Subscriber.create(name: "subscriber#{index}")
@@ -41,13 +38,12 @@ end
 20.times do |_index|
   subscriber = Subscriber.order(Arel.sql('RANDOM()')).first
   book = Book.order(Arel.sql('RANDOM()')).first
-  Subscription.create!(subscriber: subscriber,
-                       book: book,
+  Subscription.create!(subscriber:,
+                       book:,
                        start: DateTime.new(2014, 8, 3),
                        finish: DateTime.new(2015, 3, 7),
                        is_active: [true, false].sample)
 end
-
 
 # Author.create!(name: 'Д. Кнут')
 # Author.create!(name: 'А. Азимов')
@@ -78,7 +74,7 @@ end
 # Subscriber.create!(name: 'Сидоров С.С.')
 
 # authors = Author.all
-# books = Book.all 
+# books = Book.all
 # genres = Genre.all
 # subscribers = Subscriber.all
 
