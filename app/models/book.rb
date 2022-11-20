@@ -11,11 +11,11 @@ class Book < ApplicationRecord
   validates_associated :authors_books
   validates_associated :subscriptions
 
-  validates :name, presence: true , length: { minimum: 3 }
+  validates :name, presence: true, length: { minimum: 3 }
   validates :year, numericality: { only_integer: true }
   validates :quantity, numericality: { only_integer: true }
-  validates :name, uniqueness:{scope: :year, message: 'must be unique!'}
-  
+  validates :name, uniqueness: { scope: :year, message: 'must be unique!' }
+
   accepts_nested_attributes_for :authors
   accepts_nested_attributes_for :genres
 end
