@@ -1,5 +1,8 @@
-class AuthorBlueprint < Blueprinter::Base
-  identifier :id
+# frozen_string_literal: true
 
-  fields :name
-end
+  class AuthorBlueprint < Blueprinter::Base
+    identifier :id
+    fields :name
+    association :books, blueprint: BookBlueprint
+  end
+
