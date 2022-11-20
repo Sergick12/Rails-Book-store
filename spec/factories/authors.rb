@@ -2,18 +2,18 @@
 
 FactoryBot.define do
   factory :author do
-    
     sequence(:name) { |n| "Authors#{n}" }
-
-      factory :author_with_book do
-          transient do
-              count { 5 }
-          end
-          after(:create) do |authors, evaluator|
-              create_list(:book, evaluator.books_count, authors: [authors])
-      
-              authors.reload
-          end
+    factory :author_with_books do
+      transient do
+        books_count { 5 }
       end
+      after(:create) do |authors, evaluator|
+        (0...evaluator.books_count).each do
+          authors.books << FactoryBot.create(:book)
+        end
+        authors.reload
+      end
+
+    end
   end
 end
