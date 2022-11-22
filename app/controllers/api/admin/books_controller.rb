@@ -36,7 +36,8 @@ module Api
 
       # DELETE /books/1 or /books/1.json
       def destroy
-        @book.destroy
+        @book = ::Admin::Books::Destroy.call(params)
+        render json: BookBlueprint.render(@book), status: :accepted
       end
 
       private
