@@ -20,11 +20,11 @@ RSpec.describe 'Api/V1/Books', type: :request do
   end
   describe '#show' do
     before do
-        create(:book, :true_name)
-      end
+      create(:book, :true_name)
+    end
     it 'return book' do
       get "/api/v1/books/#{Book.all.first.id}"
-      expect(JSON.parse(response.body)["name"]).to eq("name5")
+      expect(JSON.parse(response.body)['name']).to eq('name5')
     end
   end
 end
