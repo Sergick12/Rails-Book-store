@@ -11,14 +11,5 @@ FactoryBot.define do
     trait :old do
       year { rand(1900..1940) }
     end
-    factory :books_with_genre do
-      transient do
-        genres_count { 5 }
-      end
-      after(:create) do |books, evaluator|
-        create_list(:genre, evaluator.genres_count, books: [books])
-        books.reload
-      end
-    end
   end
 end
